@@ -1,12 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import * as Survey from 'survey-react';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import json from './components/surveys/questionsOne';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+Survey.StylesManager.applyTheme("defaultV2");
+
+
+function sendDataToServer(survey) {
+  //send Ajax request to your web server
+  alert("The results are: " + JSON.stringify(survey.data));
+}
+
 root.render(
-  <React.StrictMode>
+ <Survey.Survey json={json} onComplete={ sendDataToServer } />, document.getElementById("surveyContainer")>
+ <React.StrictMode>
     <App />
   </React.StrictMode>
 );
